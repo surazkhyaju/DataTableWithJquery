@@ -1,0 +1,31 @@
+﻿@model List<DataTableCRUD.Models.Developer>
+    
+<table class="table table-bordered" id="tableid">
+    <thead>
+        <tr>
+            <td>Developer-Name</td>
+            <td>Developer-Age</td>
+            <td>Phone-Number</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach(var d in Model){
+            <tr>
+               <td>
+                   @d.DeveloperName
+               </td>
+                <td>@d.Age</td>
+                <td>@d.PhoneNumber</td>
+                <td><a data-action="Edit" data-id="@d.DeveloperId">Edit</a></td>
+                <td><a data-action="Delete" data-id="@d.DeveloperId">Delete</a></td>
+            </tr>
+
+        }
+    </tbody>
+
+
+
+</table>

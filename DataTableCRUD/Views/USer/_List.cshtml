@@ -1,0 +1,27 @@
+﻿@model List<DataTableCRUD.Models.User>
+<table class="table table-bordered" id="tableId">
+    <thead>
+        <tr>
+            <td>User-Name</td>
+            <td>Password</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+           <tr>
+                <td>@u.UserName</td>
+                <td>@u.Password</td>
+               <td><a data-action="Edit" data-id="@u.UserId">Edit</a></td>
+               <td><a data-action="Delete" data-id="@u.UserId">Delete</a></td>
+               
+            </tr>
+        }
+
+    </tbody>
+
+
+</table>
+

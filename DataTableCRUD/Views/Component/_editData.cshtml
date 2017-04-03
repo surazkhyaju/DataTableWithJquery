@@ -1,0 +1,51 @@
+﻿
+@model DataTableCRUD.Models.Component
+@using (Html.BeginForm("editData", "Component", FormMethod.Post, new { @class = "form-horizontal", id = "postDataForm" }))
+{
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ComponentId)
+        <div class="form-group">
+            @Html.LabelFor(m => m.DeveloperId, new { @class = "col-md-3 control-label" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(m => m.DeveloperId, ViewBag.Developers as SelectList, "Select Developer name", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.DeveloperId)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ModuleId, new { @class = "col-md-3 control-label" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(m => m.ModuleId, ViewBag.Developers as SelectList, "Select Module name", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.ModuleId)
+            </div>
+        </div>
+
+        
+        <div class="form-group">
+            @Html.LabelFor(u => u.ComponentName, new { @class = "col-md-3 control-label" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(u => u.ComponentName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(u => u.ComponentName)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(u => u.Status, new { @class = "col-md-3 control-label" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(u => u.Status, new { @class = "form-control" })
+                @Html.ValidationMessageFor(u => u.Status)
+            </div>
+        </div>
+       
+        <div class="form-actions">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-9">
+
+                    <button type="button" id="updateComponent" class="btn btn-primary">Submit</button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+}

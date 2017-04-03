@@ -1,0 +1,37 @@
+﻿@model DataTableCRUD.Models.Developer
+@using (Html.BeginForm("addData", "Developer", FormMethod.Post, new { @class = "form-horizontal", id = "postDataForm" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(u => u.DeveloperName, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(u => u.DeveloperName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(u => u.DeveloperName)
+        </div>
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(u => u.Age, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(u => u.Age, new { @class = "form-control" })
+            @Html.ValidationMessageFor(u => u.Age)
+        </div>
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(u => u.PhoneNumber, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(u => u.PhoneNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(u => u.PhoneNumber)
+        </div>
+
+    </div>
+
+    <div class="form-actions">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-9">
+                <button type="button" id="saveDeveloper" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-default">Cancel</button>
+            </div>
+        </div>
+    </div>
+}

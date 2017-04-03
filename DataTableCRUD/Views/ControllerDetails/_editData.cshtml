@@ -1,0 +1,40 @@
+﻿@model DataTableCRUD.Models.ControllerDetail
+@using (Html.BeginForm("editData", "ControllerDetail", FormMethod.Post, new { @class = "form-horizontal", id = "postDataForm" }))
+{
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ControllerId)
+
+        @Html.AntiForgeryToken()
+       
+            <h1>please edit your Controller Details</h1><hr />
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.ControllerId)
+            <div class="form-group">
+                @Html.LabelFor(cd => cd.ControllerId, new { @class = "col-md-3 control-label" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(cd => cd.ComponentId, ViewBag.Components as SelectList, "Select Component", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(cd => cd.ComponentId)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(cd => cd.ControllerName, new { @class = "col-md-3 control-label" })
+                <div class="col-md-9">
+                    @Html.TextBoxFor(cd => cd.ControllerName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(cd => cd.ControllerName)
+                </div>
+            </div>
+        <div class="form-actions">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-9">
+
+                    <button type="button" id="updateController" class="btn btn-primary">Submit</button>
+
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+
+            }

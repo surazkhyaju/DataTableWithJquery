@@ -1,0 +1,88 @@
+﻿
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+
+            loadData();
+            function loadData() {
+                $.get("@Url.Action("getData")", function (resp) {
+                    $("#list").html(resp)
+                })
+            }
+            $("[data-action=addNew]").click(function () {
+                $.get("@Url.Action("addData")", function (resp) {
+                    $("#addDailyBody").html(resp)
+                    $('#addDaily').modal('show')
+                })
+
+            });
+            $(document).on("click", "#saveDaily", function () {
+                $.post("@Url.Action("addData")", { daily: $('#postDataForm').serializeObject() }, function (resp) {
+                    if (resp.IsSuccess == true) {
+                        $('#addDaily').modal('hide')
+                        loadData();
+                    }
+                    else {
+                        alert(resp.Message)
+                    }
+
+
+                })
+            })
+            $(document).on("click", '[data-action=Edit]', function () {
+                $.get('@Url.Action("editData")' + '?id=' + $(this).attr('data-id'), function (resp) {
+                    $('#addDailyBody').html(resp);
+                    $('#addDaily').modal('show');
+
+                });
+            });
+            $(document).on("click", "#updateDaily", function () {
+                $.post("@Url.Action("editData")", { comp: $('#postDataForm').serializeObject() }, function (resp) {
+
+                    $('#addDaily').modal('hide');
+                    loadData();
+
+
+                })
+            });
+            $(document).on("click", '[data-action=Delete]', function () {
+
+                if (confirm("Are you sure you want to delete this")) {
+                    $.post('@Url.Action("Delete")', { 'id': $(this).attr('data-id') }, function (resp) {
+                        if (resp.Issuccess === true) {
+
+                            loadData();
+                        }
+
+                        else {
+                            alert("error");
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
+
+<div id="list">
+
+</div>
+<button type="button" class="btn btn-primary btn-lg" data-action="addNew"> Add Daily </button>
+
+<div id="addDaily" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Add Daily</h4>
+            </div>
+            <div class="modal-body" id="addDailyBody">
+                <form method="post"></form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+

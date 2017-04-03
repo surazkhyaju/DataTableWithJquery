@@ -1,0 +1,28 @@
+﻿@model List<DataTableCRUD.Models.ControllerDetail>
+<table class="table table-bordered" id="tableId">
+    <thead>
+        <tr>
+            <td>Controller-Name</td>
+            <td>Module-Name</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.ControllerName</td>
+                <td>@(u.Component != null ? u.Component.ComponentName : "")</td>
+                <td><a data-action="Edit" data-id="@u.ControllerId">Edit</a></td>
+                <td><a data-action="Delete" data-id="@u.ControllerId">Delete</a></td>
+
+            </tr>
+        }
+
+    </tbody>
+
+
+</table>
+
+

@@ -1,0 +1,33 @@
+﻿@model DataTableCRUD.Models.User
+@using (Html.BeginForm("editData", "User", FormMethod.Post, new { @class = "form-horizontal", id = "postDataForm" }))
+{
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.UserId)
+    <div class="form-group">
+        @Html.LabelFor(u => u.UserName, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(u => u.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(u => u.UserName)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(u => u.Password, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(u => u.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(u => u.Password)
+        </div>
+    </div>
+        <div class="form-actions">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-9">
+                   
+                    <button type="button" id="updateUser" class="btn btn-primary">Submit</button>
+
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+}

@@ -1,0 +1,46 @@
+﻿@model List<DataTableCRUD.Models.DailyDeveloperTaskLog>
+<table class="table table-bordered" id="tableId">
+    <thead>
+        <tr>
+            <td>Task</td>
+
+            <td>Controller-Name</td>
+            <td>Service-Name</td>
+            <td>Date</td>
+            <td>Time-Start</td>
+            <td>Time-End</td>
+            <td>JS File-Name</td>
+            <td>View-Name</td>
+            <td>Remarks</td>
+            <td>Edit</td>
+            <td>Delete</td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.Task</td>
+                <td>@(u.ControllerDetail != null ? u.ControllerDetail.ControllerName : "")</td>
+                <td>@(u.Service != null ? u.Service.ServiceName : "")</td>
+                <td>@u.Date</td>
+                <td>@u.TimeStart</td>
+                <td>@u.TimeEnd</td>
+                <td>@u.JSFileName</td>
+                <td>@u.ViewName</td>
+                <td>@u.Remark</td>
+
+                <td><a data-action="Edit" data-id="@u.DailyDeveloperTaskLogId">Edit</a></td>
+                <td><a data-action="Delete" data-id="@u.DailyDeveloperTaskLogId">Delete</a></td>
+
+            </tr>
+        }
+
+    </tbody>
+
+
+</table>
+
+
+

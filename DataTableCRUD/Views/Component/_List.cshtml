@@ -1,0 +1,33 @@
+﻿@model List<DataTableCRUD.Models.Component>
+<table class="table table-bordered" id="tableId">
+    <thead>
+        <tr>
+            <td>Component-Name</td>
+           
+            <td>Developer-Name</td>
+            <td>ModuleName</td>
+            <td>Status</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.ComponentName</td>
+                <td>@(u.Developer != null ? u.Developer.DeveloperName : "")</td>
+                <td>@(u.Module != null ? u.Module.ModuleName : "")</td>
+                <td>@u.Status</td>
+                <td><a data-action="Edit" data-id="@u.ComponentId">Edit</a></td>
+                <td><a data-action="Delete" data-id="@u.ComponentId">Delete</a></td>
+
+            </tr>
+        }
+
+    </tbody>
+
+
+</table>
+
+

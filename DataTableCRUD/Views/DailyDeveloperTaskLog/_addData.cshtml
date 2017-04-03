@@ -1,0 +1,85 @@
+﻿
+@model DataTableCRUD.Models.DailyDeveloperTaskLog
+@using (Html.BeginForm("addData", "DailyDeveloperTaskLog", FormMethod.Post, new { @class = "form-horizontal", id = "postDataForm" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(cd => cd.ControllerId, "ControllerDetail", new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.DropDownListFor(cd => cd.ControllerId, ViewBag.ControllerDetails as SelectList, "Select Controller", new { @class = "form-control" })
+            @Html.ValidationMessageFor(cd => cd.ControllerId)
+
+        </div>
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(cd => cd.ServiceId, "Service", new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.DropDownListFor(cd => cd.ServiceId, ViewBag.Services as SelectList, "Select service", new { @class = "form-control" })
+            @Html.ValidationMessageFor(cd => cd.ServiceId)
+
+        </div>
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(dd => dd.Task, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(dd => dd.Task, new { @class = "form-control" })
+            @Html.ValidationMessageFor(dd => dd.Task)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(dd => dd.Date, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(dd => dd.Date, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Date)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(dd => dd.TimeStart, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(dd => dd.TimeStart, new { @class = "form-control" })
+            @Html.ValidationMessageFor(dd => dd.TimeStart)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(dd => dd.TimeEnd, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(dd => dd.TimeEnd, new { @class = "form-control" })
+            @Html.ValidationMessageFor(dd => dd.TimeEnd)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(dd => dd.JSFileName, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(dd => dd.JSFileName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(dd => dd.JSFileName)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(dd => dd.ViewName, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(dd => dd.ViewName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ViewName)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(dd => dd.Remark, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(dd => dd.Remark, new { @class = "form-control" })
+            @Html.ValidationMessageFor(dd => dd.Remark)
+        </div>
+    </div>
+
+     
+    <div class="form-actions">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-9">
+                <button type="button" id="saveDaily" class="btn btn-primary">Submit</button>
+
+            </div>
+        </div>
+
+    </div>
+}
+
