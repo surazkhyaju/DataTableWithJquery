@@ -15,7 +15,7 @@
                     $('#addDaily').modal('show')
                 })
 
-            });
+            }); 
             $(document).on("click", "#saveDaily", function () {
                 $.post("@Url.Action("addData")", { daily: $('#postDataForm').serializeObject() }, function (resp) {
                     if (resp.IsSuccess == true) {
