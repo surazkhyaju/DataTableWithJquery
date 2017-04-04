@@ -33,6 +33,6 @@ namespace DataTableCRUD.Models
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<FinalReportLog> FinalReportLogs { get; set; }
+        public virtual DbSet<View2> View2 { get; set; }
     }
 }

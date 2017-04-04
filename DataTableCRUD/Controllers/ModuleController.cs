@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DataTableCRUD.Models;
 using System.Data.Entity;
+using DataTableCRUD.Helper;
 
 namespace DataTableCRUD.Controllers
 {
@@ -13,7 +14,7 @@ namespace DataTableCRUD.Controllers
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
     }
-    public class ModuleController : Controller
+    public class ModuleController : BaseController
     {
         private readonly MyDatabaseEntities _context;
         public ModuleController(){

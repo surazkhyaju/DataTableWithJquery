@@ -13,7 +13,7 @@
         <EntityTypeShape EntityType="MyDatabaseModel.Service" Width="1.5" PointX="5.25" PointY="0.75" />
         <EntityTypeShape EntityType="MyDatabaseModel.sysdiagram" Width="1.5" PointX="5.75" PointY="9" />
         <EntityTypeShape EntityType="MyDatabaseModel.User" Width="1.5" PointX="3" PointY="8.625" />
-        <EntityTypeShape EntityType="MyDatabaseModel.FinalReportLog" Width="1.5" PointX="7.75" PointY="9" />
+        <EntityTypeShape EntityType="MyDatabaseModel.View2" Width="1.5" PointX="7.75" PointY="9" />
         <AssociationConnector Association="MyDatabaseModel.FK_Component_Developer" />
         <AssociationConnector Association="MyDatabaseModel.FK_Component_Module" />
         <AssociationConnector Association="MyDatabaseModel.FK_Controller_Component" />

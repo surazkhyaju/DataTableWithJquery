@@ -1,4 +1,5 @@
-﻿using DataTableCRUD.Models;
+﻿using DataTableCRUD.Helper;
+using DataTableCRUD.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,7 @@ using System.Web.Mvc;
 
 namespace DataTableCRUD.Controllers
 {
-    public class ComponentController : Controller
+    public class ComponentController : BaseController
     {
         private readonly MyDatabaseEntities _context;
         public ComponentController()

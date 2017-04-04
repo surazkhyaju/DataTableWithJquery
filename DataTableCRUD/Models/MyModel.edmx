@@ -100,52 +100,41 @@
           <Property Name="UserType" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Dailyreport.dbo.FinalReportLog' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="FinalReportLog">
+warning 6002: The table/view 'Dailyreport.dbo.View2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View2">
           <Key>
-            <PropertyRef Name="Expr1" />
-            <PropertyRef Name="ComponentId" />
             <PropertyRef Name="ComponentName" />
-            <PropertyRef Name="ModuleId" />
-            <PropertyRef Name="ModuleName" />
-            <PropertyRef Name="ControllerName" />
+            <PropertyRef Name="ComponentId" />
             <PropertyRef Name="DailyDeveloperTaskLogId" />
             <PropertyRef Name="Task" />
-            <PropertyRef Name="ControllerId" />
-            <PropertyRef Name="ServiceId" />
-            <PropertyRef Name="JSFileName" />
             <PropertyRef Name="ViewName" />
-            <PropertyRef Name="ServiceName" />
-            <PropertyRef Name="Expr2" />
-            <PropertyRef Name="UserName" />
             <PropertyRef Name="DeveloperName" />
-            <PropertyRef Name="DeveloperId" />
+            <PropertyRef Name="ModuleId" />
+            <PropertyRef Name="ModuleName" />
+            <PropertyRef Name="ControllerId" />
+            <PropertyRef Name="ControllerName" />
+            <PropertyRef Name="ServiceId" />
+            <PropertyRef Name="ServiceName" />
           </Key>
-          <Property Name="Expr1" Type="int" Nullable="false" />
+          <Property Name="ComponentName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ComponentId" Type="int" Nullable="false" />
           <Property Name="Status" Type="varchar" MaxLength="50" />
-          <Property Name="ComponentName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ModuleId" Type="int" Nullable="false" />
-          <Property Name="ModuleName" Type="varchar" MaxLength="1050" Nullable="false" />
-          <Property Name="ControllerName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DailyDeveloperTaskLogId" Type="int" Nullable="false" />
           <Property Name="Task" Type="varchar" MaxLength="2500" Nullable="false" />
-          <Property Name="ControllerId" Type="int" Nullable="false" />
-          <Property Name="ServiceId" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" />
           <Property Name="TimeStart" Type="int" />
           <Property Name="TimeEnd" Type="int" />
-          <Property Name="JSFileName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ViewName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Remark" Type="varchar" MaxLength="2000" />
-          <Property Name="CreatedByUserId" Type="int" />
-          <Property Name="CreatedByUserName" Type="varchar" MaxLength="50" />
-          <Property Name="CreatedByUSerDate" Type="date" />
-          <Property Name="ServiceName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Expr2" Type="int" Nullable="false" />
-          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DeveloperName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="DeveloperId" Type="int" Nullable="false" />
+          <Property Name="Age" Type="int" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModuleId" Type="int" Nullable="false" />
+          <Property Name="ModuleName" Type="varchar" MaxLength="1050" Nullable="false" />
+          <Property Name="ControllerId" Type="int" Nullable="false" />
+          <Property Name="ControllerName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ServiceId" Type="int" Nullable="false" />
+          <Property Name="ServiceName" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Component_Developer">
           <End Role="Developer" Type="Self.Developer" Multiplicity="0..1" />
@@ -228,34 +217,28 @@ warning 6002: The table/view 'Dailyreport.dbo.FinalReportLog' does not have a pr
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="FinalReportLog" EntityType="Self.FinalReportLog" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="View2" EntityType="Self.View2" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [FinalReportLog].[Expr1] AS [Expr1], 
-    [FinalReportLog].[ComponentId] AS [ComponentId], 
-    [FinalReportLog].[Status] AS [Status], 
-    [FinalReportLog].[ComponentName] AS [ComponentName], 
-    [FinalReportLog].[ModuleId] AS [ModuleId], 
-    [FinalReportLog].[ModuleName] AS [ModuleName], 
-    [FinalReportLog].[ControllerName] AS [ControllerName], 
-    [FinalReportLog].[DailyDeveloperTaskLogId] AS [DailyDeveloperTaskLogId], 
-    [FinalReportLog].[Task] AS [Task], 
-    [FinalReportLog].[ControllerId] AS [ControllerId], 
-    [FinalReportLog].[ServiceId] AS [ServiceId], 
-    [FinalReportLog].[Date] AS [Date], 
-    [FinalReportLog].[TimeStart] AS [TimeStart], 
-    [FinalReportLog].[TimeEnd] AS [TimeEnd], 
-    [FinalReportLog].[JSFileName] AS [JSFileName], 
-    [FinalReportLog].[ViewName] AS [ViewName], 
-    [FinalReportLog].[Remark] AS [Remark], 
-    [FinalReportLog].[CreatedByUserId] AS [CreatedByUserId], 
-    [FinalReportLog].[CreatedByUserName] AS [CreatedByUserName], 
-    [FinalReportLog].[CreatedByUSerDate] AS [CreatedByUSerDate], 
-    [FinalReportLog].[ServiceName] AS [ServiceName], 
-    [FinalReportLog].[Expr2] AS [Expr2], 
-    [FinalReportLog].[UserName] AS [UserName], 
-    [FinalReportLog].[DeveloperName] AS [DeveloperName], 
-    [FinalReportLog].[DeveloperId] AS [DeveloperId]
-    FROM [dbo].[FinalReportLog] AS [FinalReportLog]</DefiningQuery>
+    [View2].[ComponentName] AS [ComponentName], 
+    [View2].[ComponentId] AS [ComponentId], 
+    [View2].[Status] AS [Status], 
+    [View2].[DailyDeveloperTaskLogId] AS [DailyDeveloperTaskLogId], 
+    [View2].[Task] AS [Task], 
+    [View2].[Date] AS [Date], 
+    [View2].[TimeStart] AS [TimeStart], 
+    [View2].[TimeEnd] AS [TimeEnd], 
+    [View2].[ViewName] AS [ViewName], 
+    [View2].[Remark] AS [Remark], 
+    [View2].[DeveloperName] AS [DeveloperName], 
+    [View2].[Age] AS [Age], 
+    [View2].[PhoneNumber] AS [PhoneNumber], 
+    [View2].[ModuleId] AS [ModuleId], 
+    [View2].[ModuleName] AS [ModuleName], 
+    [View2].[ControllerId] AS [ControllerId], 
+    [View2].[ControllerName] AS [ControllerName], 
+    [View2].[ServiceId] AS [ServiceId], 
+    [View2].[ServiceName] AS [ServiceName]
+    FROM [dbo].[View2] AS [View2]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Component_Developer" Association="Self.FK_Component_Developer">
             <End Role="Developer" EntitySet="Developer" />
@@ -295,7 +278,7 @@ warning 6002: The table/view 'Dailyreport.dbo.FinalReportLog' does not have a pr
           <EntitySet Name="Services" EntityType="MyDatabaseModel.Service" />
           <EntitySet Name="sysdiagrams" EntityType="MyDatabaseModel.sysdiagram" />
           <EntitySet Name="Users" EntityType="MyDatabaseModel.User" />
-          <EntitySet Name="FinalReportLogs" EntityType="MyDatabaseModel.FinalReportLog" />
+          <EntitySet Name="View2" EntityType="MyDatabaseModel.View2" />
           <AssociationSet Name="FK_Component_Developer" Association="MyDatabaseModel.FK_Component_Developer">
             <End Role="Developer" EntitySet="Developers" />
             <End Role="Component" EntitySet="Components" />
@@ -427,51 +410,40 @@ warning 6002: The table/view 'Dailyreport.dbo.FinalReportLog' does not have a pr
           <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Developer" Relationship="MyDatabaseModel.FK_User_Developer" FromRole="User" ToRole="Developer" />
         </EntityType>
-        <EntityType Name="FinalReportLog">
+        <EntityType Name="View2">
           <Key>
-            <PropertyRef Name="Expr1" />
-            <PropertyRef Name="ComponentId" />
             <PropertyRef Name="ComponentName" />
-            <PropertyRef Name="ModuleId" />
-            <PropertyRef Name="ModuleName" />
-            <PropertyRef Name="ControllerName" />
+            <PropertyRef Name="ComponentId" />
             <PropertyRef Name="DailyDeveloperTaskLogId" />
             <PropertyRef Name="Task" />
-            <PropertyRef Name="ControllerId" />
-            <PropertyRef Name="ServiceId" />
-            <PropertyRef Name="JSFileName" />
             <PropertyRef Name="ViewName" />
-            <PropertyRef Name="ServiceName" />
-            <PropertyRef Name="Expr2" />
-            <PropertyRef Name="UserName" />
             <PropertyRef Name="DeveloperName" />
-            <PropertyRef Name="DeveloperId" />
+            <PropertyRef Name="ModuleId" />
+            <PropertyRef Name="ModuleName" />
+            <PropertyRef Name="ControllerId" />
+            <PropertyRef Name="ControllerName" />
+            <PropertyRef Name="ServiceId" />
+            <PropertyRef Name="ServiceName" />
           </Key>
-          <Property Name="Expr1" Type="Int32" Nullable="false" />
+          <Property Name="ComponentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ComponentId" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ComponentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ModuleId" Type="Int32" Nullable="false" />
-          <Property Name="ModuleName" Type="String" Nullable="false" MaxLength="1050" FixedLength="false" Unicode="false" />
-          <Property Name="ControllerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DailyDeveloperTaskLogId" Type="Int32" Nullable="false" />
           <Property Name="Task" Type="String" Nullable="false" MaxLength="2500" FixedLength="false" Unicode="false" />
-          <Property Name="ControllerId" Type="Int32" Nullable="false" />
-          <Property Name="ServiceId" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="TimeStart" Type="Int32" />
           <Property Name="TimeEnd" Type="Int32" />
-          <Property Name="JSFileName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ViewName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Remark" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedByUserId" Type="Int32" />
-          <Property Name="CreatedByUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedByUSerDate" Type="DateTime" Precision="0" />
-          <Property Name="ServiceName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Expr2" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DeveloperName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DeveloperId" Type="Int32" Nullable="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModuleId" Type="Int32" Nullable="false" />
+          <Property Name="ModuleName" Type="String" Nullable="false" MaxLength="1050" FixedLength="false" Unicode="false" />
+          <Property Name="ControllerId" Type="Int32" Nullable="false" />
+          <Property Name="ControllerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ServiceId" Type="Int32" Nullable="false" />
+          <Property Name="ServiceName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Component_Developer">
           <End Type="MyDatabaseModel.Developer" Role="Developer" Multiplicity="0..1" />
@@ -545,7 +517,7 @@ warning 6002: The table/view 'Dailyreport.dbo.FinalReportLog' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -653,34 +625,28 @@ warning 6002: The table/view 'Dailyreport.dbo.FinalReportLog' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FinalReportLogs">
-            <EntityTypeMapping TypeName="MyDatabaseModel.FinalReportLog">
-              <MappingFragment StoreEntitySet="FinalReportLog">
-                <ScalarProperty Name="DeveloperId" ColumnName="DeveloperId" />
-                <ScalarProperty Name="DeveloperName" ColumnName="DeveloperName" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+          <EntitySetMapping Name="View2">
+            <EntityTypeMapping TypeName="MyDatabaseModel.View2">
+              <MappingFragment StoreEntitySet="View2">
                 <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
-                <ScalarProperty Name="CreatedByUSerDate" ColumnName="CreatedByUSerDate" />
-                <ScalarProperty Name="CreatedByUserName" ColumnName="CreatedByUserName" />
-                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ControllerId" ColumnName="ControllerId" />
+                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="DeveloperName" ColumnName="DeveloperName" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="ViewName" ColumnName="ViewName" />
-                <ScalarProperty Name="JSFileName" ColumnName="JSFileName" />
                 <ScalarProperty Name="TimeEnd" ColumnName="TimeEnd" />
                 <ScalarProperty Name="TimeStart" ColumnName="TimeStart" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
-                <ScalarProperty Name="ControllerId" ColumnName="ControllerId" />
                 <ScalarProperty Name="Task" ColumnName="Task" />
                 <ScalarProperty Name="DailyDeveloperTaskLogId" ColumnName="DailyDeveloperTaskLogId" />
-                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
-                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
-                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
-                <ScalarProperty Name="ComponentName" ColumnName="ComponentName" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ComponentId" ColumnName="ComponentId" />
-                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="ComponentName" ColumnName="ComponentName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
