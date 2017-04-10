@@ -21,6 +21,7 @@ namespace DataTableCRUD.Controllers
         }
       
         // GET: Developer
+        [Authorize (Roles ="Admin")]
        public ActionResult Index()
         {
             return View();

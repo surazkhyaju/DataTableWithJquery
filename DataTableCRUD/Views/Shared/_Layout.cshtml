@@ -43,16 +43,25 @@
                 <ul class="nav nav-pills nav-stacked">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li class="active"><a href=@Url.Action("Main", "Home")><i class="fa fa-home"></i>Home</a></li>
-                        <li><a href="@Url.Action("Index", "Module")"><i class="fa fa-list-alt"></i>Module</a></li>
-                        <li><a href="@Url.Action("Index", "Component")"><i class="fa fa-file-o"></i>Component</a></li>
-                        <li><a href="@Url.Action("Index", "ControllerDetails")"><i class="fa fa-calendar"></i>Controller</a></li>
-                        <li><a href="@Url.Action("Index", "Developer")"><i class="fa fa-bar-chart-o"></i>Developers</a></li>
-                        <li><a href="@Url.Action("Index", "Service")">Services</a></li>
-                         <li><a href="@Url.Action("Index", "User")" class="fa fa-tasks">Users</a></li>
-                        <li><a href="@Url.Action("Index", "DailyDeveloperTaskLog")"> Daily Developer's task log</a></li>
-                        <li><a href="@Url.Action("Index", "FinalLog")"><i class="fa fa-pencil"></i>Report</a></li>
-                        <li><a href="@Url.Action("Index", "DailyDeveloperTaskLog")"> Daily Developer's task log</a></li>
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li class="active"><a href=@Url.Action("Main", "Home")><i class="fa fa-home"></i>Home</a></li>
+                            <li><a href="@Url.Action("Index", "Module")"><i class="fa fa-list-alt"></i>Module</a></li>
+                            <li><a href="@Url.Action("Index", "Component")"><i class="fa fa-file-o"></i>Component</a></li>
+                            <li><a href="@Url.Action("Index", "ControllerDetails")"><i class="fa fa-calendar"></i>Controller</a></li>
+                            <li><a href="@Url.Action("Index", "Developer")"><i class="fa fa-bar-chart-o"></i>Developers</a></li>
+                            <li><a href="@Url.Action("Index", "Service")">Services</a></li>
+                            <li><a href="@Url.Action("Index", "User")" class="fa fa-tasks">Users</a></li>
+                            <li><a href="@Url.Action("Index", "DailyDeveloperTaskLog")"> Daily Developer's task log</a></li>
+                            <li><a href="@Url.Action("Index", "FinalLog")"><i class="fa fa-pencil"></i>Report</a></li>
+                            <li><a href="@Url.Action("Index", "DailyDeveloperTaskLog")"> Daily Developer's task log</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("Index", "DailyDeveloperTaskLog")"> Daily Developer's task log</a></li>
+                            <li><a href="@Url.Action("Index", "FinalLog")"><i class="fa fa-pencil"></i>Report</a></li>
+
+                        }
                     }
                     else
                     {

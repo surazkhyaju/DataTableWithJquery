@@ -18,6 +18,7 @@ namespace DataTableCRUD.Controllers
         {
             _context = new MyDatabaseEntities();
         }
+        [Authorize(Roles ="Admin")]
         // GET: USer
         public ActionResult Index()
         {

@@ -11,7 +11,7 @@ using DataTableCRUD.Helper;
 namespace DataTableCRUD.Controllers
 {
  
-    
+    [Authorize]
     public class JsonResult
     {
         public bool IsSuccess { get; set; }
@@ -26,6 +26,7 @@ namespace DataTableCRUD.Controllers
 
         }
         // GET: Module
+        [Authorize(Roles ="Admin")]
         
         public ActionResult Index()
         {

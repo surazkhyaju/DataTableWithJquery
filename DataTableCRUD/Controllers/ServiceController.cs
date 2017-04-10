@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace DataTableCRUD.Services
 {
+    [Authorize]
     public class ServiceController : BaseController
     {
         private readonly MyDatabaseEntities _context;
@@ -17,6 +18,7 @@ namespace DataTableCRUD.Services
             _context = new MyDatabaseEntities();
         }
         // GET: ControllerDetails
+        [Authorize(Roles ="Admin")]
         public ActionResult Index()
         {
             return View();

@@ -12,6 +12,7 @@ namespace DataTableCRUD.Controllers
     [Authorize]
     public class ComponentController : BaseController
     {
+
         private readonly MyDatabaseEntities _context;
         public ComponentController()
         {
