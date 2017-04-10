@@ -33,5 +33,6 @@ namespace DataTableCRUD.Models
         public string ControllerName { get; set; }
         public int ServiceId { get; set; }
         public string ServiceName { get; set; }
+        public int DeveloperId { get; set; }
     }
 }

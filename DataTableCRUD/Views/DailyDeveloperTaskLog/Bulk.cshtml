@@ -1,0 +1,46 @@
+﻿@model List<DataTableCRUD.Models.ViewModel.DailyDeveloperTaskLogViewModel>
+@{
+    ViewBag.Title = "Bulk";
+}
+    
+
+@using DataTableCRUD.Helper;
+<h2>Bulk</h2>
+
+<li><a href="#">Welcome</a></li>
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Module-Name</th>
+            <th>Component-Name</th>
+            <th>Controller-Name</th>
+           <th>Service-Name</th>
+            <th>Status</th>
+            <th>JS file Name</th>
+            <th>View-Name</th>
+            <th>Remarks</th>
+            <th>update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var fr in Model)
+        {
+
+            <tr>
+                <td>@Html.DropDownListFor(x => fr.ModuleId, new SelectList(ViewBag.Modules, "ModuleId", "ModuleName", fr.ModuleId), new { @class = "form-control" })</td>
+                <td>@Html.DropDownListFor(x => fr.ComponentId, new SelectList(ViewBag.Components, "ComponentId", "ComponentName", fr.ComponentId), new { @class = "form-control" })</td>
+                <td>@Html.DropDownListFor(x => fr.ControllerId, new SelectList(ViewBag.ControllerDetails, "ControllerId", "ControllerName", fr.ControllerId), new { @class = "form-control" })</td>
+               <td>@Html.DropDownListFor(x=>fr.ServiceId,new SelectList(ViewBag.Services,"ServiceId","ServiceName",fr.ServiceId),new { @class="form-control"})</td>
+                <td>@Html.DropDownListFor(x => fr.Status,DropdownHelper.ServiceTypeSelectList, new { @class = "form-control" })</td>
+                <td>@Html.TextBoxFor(x => fr.JSFileName, new { @class = "form-control" })</td>
+                <td>@Html.TextBoxFor(x => fr.View, new { @class = "form-control" })</td>
+                <td>@Html.TextBoxFor(x => fr.Remarks, new { @class = "form-control" })</td>
+                <td><a data-action="Update" data-id="@fr.ComponentId">update</a></td>
+                <td><a data-action="Delete" data-id="@fr.ComponentId">Delete</a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>

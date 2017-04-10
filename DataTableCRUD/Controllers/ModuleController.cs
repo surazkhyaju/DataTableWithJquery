@@ -7,8 +7,11 @@ using DataTableCRUD.Models;
 using System.Data.Entity;
 using DataTableCRUD.Helper;
 
+
 namespace DataTableCRUD.Controllers
 {
+ 
+    
     public class JsonResult
     {
         public bool IsSuccess { get; set; }
@@ -17,11 +20,13 @@ namespace DataTableCRUD.Controllers
     public class ModuleController : BaseController
     {
         private readonly MyDatabaseEntities _context;
-        public ModuleController(){
+        public ModuleController()
+        {
             _context = new MyDatabaseEntities();
 
-            }
+        }
         // GET: Module
+        
         public ActionResult Index()
         {
             return View();
@@ -29,12 +34,12 @@ namespace DataTableCRUD.Controllers
         public PartialViewResult getData()
         {
             var model = _context.Modules.ToList();
-            return PartialView("_List",model);
+            return PartialView("_List", model);
         }
         [HttpGet]
         public PartialViewResult addData()
         {
-            return PartialView("_addData",new Module());
+            return PartialView("_addData", new Module());
 
         }
         [HttpPost]
@@ -53,22 +58,23 @@ namespace DataTableCRUD.Controllers
             }
             else
             {
+                ViewBag.Message = ModelState.GetModelStateErrors();
                 result.IsSuccess = false;
                 result.Message = "Validation Failed";
             }
             return Json(result);
         }
         [HttpGet]
-        public PartialViewResult editData (int id)
+        public PartialViewResult editData(int id)
         {
-            var model = _context.Modules.FirstOrDefault(x=>x.ModuleId==id);
-          return  PartialView("_editData",model);
+            var model = _context.Modules.FirstOrDefault(x => x.ModuleId == id);
+            return PartialView("_editData", model);
         }
         [HttpPost]
         public ActionResult editData(Module module)
         {
-            
-                
+
+
             if (ModelState.IsValid)
             {
 
@@ -79,7 +85,7 @@ namespace DataTableCRUD.Controllers
 
             }
             return RedirectToAction("Index");
-            }
+        }
         [HttpPost]
         public ActionResult Delete(int id)
         {
@@ -89,4 +95,7 @@ namespace DataTableCRUD.Controllers
             return Json(new { Issuccess = true });
         }
     }
-    }
+
+}
+
+

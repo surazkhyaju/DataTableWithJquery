@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace DataTableCRUD.Controllers
 {
+  
     public class LoginController : Controller
     {
         private readonly MyDatabaseEntities _context;
@@ -15,18 +17,20 @@ namespace DataTableCRUD.Controllers
             _context = new MyDatabaseEntities();
         }
         // GET: Login
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Index(string username, string password)
+        public ActionResult Index(User u)
         {
-            var model = _context.Users.FirstOrDefault(x => x.UserName == username && x.Password == password);
+            var model = _context.Users.FirstOrDefault(x =>x.UserName==u.UserName && x.Password==u.Password);
             if (model != null)
             {
                 Session.Add("currentUserId", model.UserId);
-                return RedirectToAction("Index", "Home");
+                FormsAuthentication.SetAuthCookie(u.UserName,false);
+                return RedirectToAction("Main", "Home");
 
             }
             else
@@ -36,5 +40,15 @@ namespace DataTableCRUD.Controllers
             return View();
 
         }
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Main", "Home");
+
+
+        }
+
+
+
     }
 }

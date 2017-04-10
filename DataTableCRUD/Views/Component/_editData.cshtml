@@ -1,5 +1,6 @@
 ﻿
 @model DataTableCRUD.Models.Component
+    @using DataTableCRUD.Helper
 @using (Html.BeginForm("editData", "Component", FormMethod.Post, new { @class = "form-horizontal", id = "postDataForm" }))
 {
     <div class="form-horizontal">
@@ -15,7 +16,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.ModuleId, new { @class = "col-md-3 control-label" })
             <div class="col-md-9">
-                @Html.DropDownListFor(m => m.ModuleId, ViewBag.Developers as SelectList, "Select Module name", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.ModuleId, ViewBag.Modules as SelectList, "Select Module name", new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.ModuleId)
             </div>
         </div>
@@ -31,7 +32,7 @@
         <div class="form-group">
             @Html.LabelFor(u => u.Status, new { @class = "col-md-3 control-label" })
             <div class="col-md-9">
-                @Html.TextBoxFor(u => u.Status, new { @class = "form-control" })
+                @Html.DropDownListFor(x => x.Status, DropdownHelper.ServiceTypeSelectList, new { @class = "form-control" })
                 @Html.ValidationMessageFor(u => u.Status)
             </div>
         </div>

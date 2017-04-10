@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace DataTableCRUD.Helper
 {
@@ -15,6 +16,8 @@ namespace DataTableCRUD.Helper
             {
                 filterContext.Result = RedirectToAction("Index", "Login");
             }
+
+
             base.OnActionExecuting(filterContext);
         }
 

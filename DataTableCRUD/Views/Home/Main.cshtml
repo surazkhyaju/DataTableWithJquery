@@ -1,0 +1,40 @@
+﻿
+        <div class="well">
+            please select where you want to go to. And perform task.Its easy
+            <div class="w3-content w3-section" style="max-width:500px">
+                <img class="mySlides" src="~/Content/MainImg/img/1.jpg" style="width:110%">
+                <img class="mySlides" src="~/Content/MainImg/img/10.jpg"  style="width:110%">
+                <img class="mySlides" src="~/Content/MainImg/img/4.jpg" style="width:110%">
+                <img class="mySlides" src="~/Content/MainImg/img/2.jpg" style="width:110%">
+                <img class="mySlides" src="~/Content/MainImg/img/12.jpg" style="width:110%">
+                <img class="mySlides" src="~/Content/MainImg/img/5.jpg" style="width:110%">
+                <img class="mySlides" src="~/Content/MainImg/img/15.jpg" style="width:110%">
+                <img class="mySlides" src="~/Content/MainImg/img/8.jpg" style="width:110%">
+                <img class="mySlides" src="~/Content/MainImg/img/7.jpg" style="width:110%">
+                <img class="mySlides" src="~/Content/MainImg/img/2.jpg" style="width:110%">
+                <img class="mySlides" src="~/Content/MainImg/img/6.jpg" style="width:110%">
+                <img class="mySlides" src="~/Content/MainImg/img/17.jpg" style="width:110%">
+                <img class="mySlides" src="~/Content/MainImg/img/16.jpg" style="width:110%">
+                <img class="mySlides" src="~/Content/MainImg/img/11.jpg" style="width:110%">
+                <img class="mySlides" src="~/Content/MainImg/img/3.jpg" style="width:110%">
+                <img class="mySlides" src="~/Content/MainImg/img/13.jpg" style="width:110%">
+                <img class="mySlides" src="~/Content/MainImg/img/9.jpg" style="width:110%">
+            </div>
+        </div>
+  
+<script type="text/javascript">
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+</script>

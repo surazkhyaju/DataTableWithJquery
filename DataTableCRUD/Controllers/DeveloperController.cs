@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.ModelBinding;
 using System.Web.Mvc;
 
 namespace DataTableCRUD.Controllers
@@ -50,6 +51,7 @@ namespace DataTableCRUD.Controllers
             }
             else
             {
+                ViewBag.Message = ModelState.GetModelStateErrors();
                 result.IsSuccess = false;
                 result.Message = "Validation Failed";
             }

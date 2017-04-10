@@ -6,10 +6,15 @@ using System.Web.Mvc;
 
 namespace DataTableCRUD.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
-        // GET: Home
+            // GET: Home
         public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult Main()
         {
             return View();
         }

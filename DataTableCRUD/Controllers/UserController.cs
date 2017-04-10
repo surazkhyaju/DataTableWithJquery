@@ -10,7 +10,8 @@ using System.Web.Mvc;
 
 namespace DataTableCRUD.Controllers
 {
-    public class UserController : BaseController
+    [Authorize]
+    public class UserController :BaseController
     {
         private readonly MyDatabaseEntities _context;
         public UserController()
@@ -55,7 +56,7 @@ namespace DataTableCRUD.Controllers
         public PartialViewResult editData(int id)
         {
             var model = _context.Users.FirstOrDefault(x => x.UserId == id);
-            return PartialView("_editData",model);
+            return PartialView("_editData", model);
         }
         [HttpPost]
         public ActionResult editData(User user)
@@ -64,12 +65,12 @@ namespace DataTableCRUD.Controllers
             var result = new JsonResult();
             if (ModelState.IsValid)
             {
-                
-                   
-                    _context.Entry(user).State = EntityState.Modified;
-                    _context.SaveChanges();
-                    return RedirectToAction("Index");
-                
+
+
+                _context.Entry(user).State = EntityState.Modified;
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+
             }
             return Json(result);
 
@@ -81,8 +82,8 @@ namespace DataTableCRUD.Controllers
             var model = _context.Users.FirstOrDefault(x => x.UserId == id);
             _context.Users.Remove(model);
             _context.SaveChanges();
-            return Json(new { Issuccess=true});
+            return Json(new { Issuccess = true });
         }
     }
-    }
+}
 

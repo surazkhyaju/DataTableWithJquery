@@ -158,6 +158,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ComponentController.cs" />
     <Compile Include="Controllers\ControllerDetailsController.cs" />
     <Compile Include="Controllers\DailyDeveloperTaskLogController.cs" />
@@ -172,6 +173,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\BaseController.cs" />
+    <Compile Include="Helper\DropdownHelper.cs" />
+    <Compile Include="Helper\Extension.cs" />
     <Compile Include="Models\Component.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
@@ -215,6 +218,8 @@
     <Compile Include="Models\View2.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\DailyDeveloperTaskLogViewModel.cs" />
+    <Compile Include="MyroleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -224,6 +229,74 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Img\about-us.jpg" />
+    <Content Include="Content\Img\bars.png" />
+    <Content Include="Content\Img\blog\1.jpg" />
+    <Content Include="Content\Img\blog\2.jpg" />
+    <Content Include="Content\Img\blog\3.jpg" />
+    <Content Include="Content\Img\blog\4.jpg" />
+    <Content Include="Content\Img\bx_loader.gif" />
+    <Content Include="Content\Img\glyphicons-halflings-white.png" />
+    <Content Include="Content\Img\glyphicons-halflings.png" />
+    <Content Include="Content\Img\header-bg-image.jpg" />
+    <Content Include="Content\Img\icomoon-social.png" />
+    <Content Include="Content\Img\icons\facebook.png" />
+    <Content Include="Content\Img\icons\linkedin.png" />
+    <Content Include="Content\Img\icons\rss.png" />
+    <Content Include="Content\Img\icons\twitter.png" />
+    <Content Include="Content\Img\logo.png" />
+    <Content Include="Content\Img\logos\logo-1.jpg" />
+    <Content Include="Content\Img\logos\logo-10.jpg" />
+    <Content Include="Content\Img\logos\logo-11.jpg" />
+    <Content Include="Content\Img\logos\logo-12.jpg" />
+    <Content Include="Content\Img\logos\logo-2.jpg" />
+    <Content Include="Content\Img\logos\logo-3.jpg" />
+    <Content Include="Content\Img\logos\logo-4.jpg" />
+    <Content Include="Content\Img\logos\logo-5.jpg" />
+    <Content Include="Content\Img\logos\logo-6.jpg" />
+    <Content Include="Content\Img\logos\logo-7.jpg" />
+    <Content Include="Content\Img\logos\logo-8.jpg" />
+    <Content Include="Content\Img\logos\logo-9.jpg" />
+    <Content Include="Content\Img\logos\Screenshot %2822%29-01.jpeg" />
+    <Content Include="Content\Img\portfolio\1.jpg" />
+    <Content Include="Content\Img\portfolio\2.jpg" />
+    <Content Include="Content\Img\portfolio\3.jpg" />
+    <Content Include="Content\Img\portfolio\4.jpg" />
+    <Content Include="Content\Img\portfolio\5.jpg" />
+    <Content Include="Content\Img\portfolio\6.jpg" />
+    <Content Include="Content\Img\slides\1.jpg" />
+    <Content Include="Content\Img\slides\2.jpg" />
+    <Content Include="Content\Img\slides\3.jpg" />
+    <Content Include="Content\Img\slides\45853702-blurred-wallpaper.jpg" />
+    <Content Include="Content\Img\team\1.jpg" />
+    <Content Include="Content\Img\team\2.jpg" />
+    <Content Include="Content\Img\team\3.jpg" />
+    <Content Include="Content\Img\title-before.png" />
+    <Content Include="Content\MainImg\img\1.jpg" />
+    <Content Include="Content\MainImg\img\10.jpg" />
+    <Content Include="Content\MainImg\img\11.jpg" />
+    <Content Include="Content\MainImg\img\12.jpg" />
+    <Content Include="Content\MainImg\img\13.jpg" />
+    <Content Include="Content\MainImg\img\14.jpg" />
+    <Content Include="Content\MainImg\img\15.jpg" />
+    <Content Include="Content\MainImg\img\16.jpg" />
+    <Content Include="Content\MainImg\img\17.jpg" />
+    <Content Include="Content\MainImg\img\2.jpg" />
+    <Content Include="Content\MainImg\img\3.jpg" />
+    <Content Include="Content\MainImg\img\4.jpg" />
+    <Content Include="Content\MainImg\img\5.jpg" />
+    <Content Include="Content\MainImg\img\6.jpg" />
+    <Content Include="Content\MainImg\img\7.jpg" />
+    <Content Include="Content\MainImg\img\8.jpg" />
+    <Content Include="Content\MainImg\img\9.jpg" />
+    <Content Include="Content\MainImg\img\avatar-1.svg" />
+    <Content Include="Content\MainImg\img\avatar-2.svg" />
+    <Content Include="Content\MainImg\img\avatar-3.svg" />
+    <Content Include="Content\MainImg\img\avatar-4.svg" />
+    <Content Include="Content\MainImg\img\avatar-5.svg" />
+    <Content Include="Content\MainImg\img\image.svg" />
+    <Content Include="Content\MainImg\img\link.svg" />
+    <Content Include="Content\MainImg\img\mouse.svg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -251,6 +324,7 @@
       <DependentUpon>MyModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\JavaScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -258,7 +332,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\JSForMainBody.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\NavJs.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Serialized.js" />
@@ -307,6 +383,9 @@
     <Content Include="Views\FinalLog\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\DailyDeveloperTaskLog\Bulk.cshtml" />
+    <Content Include="Views\Home\Main.cshtml" />
+    <Content Include="Views\Account\login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

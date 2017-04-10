@@ -115,6 +115,7 @@ warning 6002: The table/view 'Dailyreport.dbo.View2' does not have a primary key
             <PropertyRef Name="ControllerName" />
             <PropertyRef Name="ServiceId" />
             <PropertyRef Name="ServiceName" />
+            <PropertyRef Name="DeveloperId" />
           </Key>
           <Property Name="ComponentName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ComponentId" Type="int" Nullable="false" />
@@ -135,9 +136,12 @@ warning 6002: The table/view 'Dailyreport.dbo.View2' does not have a primary key
           <Property Name="ControllerName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ServiceId" Type="int" Nullable="false" />
           <Property Name="ServiceName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DeveloperId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Component_Developer">
-          <End Role="Developer" Type="Self.Developer" Multiplicity="0..1" />
+          <End Role="Developer" Type="Self.Developer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Component" Type="Self.Component" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Developer">
@@ -237,7 +241,8 @@ warning 6002: The table/view 'Dailyreport.dbo.View2' does not have a primary key
     [View2].[ControllerId] AS [ControllerId], 
     [View2].[ControllerName] AS [ControllerName], 
     [View2].[ServiceId] AS [ServiceId], 
-    [View2].[ServiceName] AS [ServiceName]
+    [View2].[ServiceName] AS [ServiceName], 
+    [View2].[DeveloperId] AS [DeveloperId]
     FROM [dbo].[View2] AS [View2]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Component_Developer" Association="Self.FK_Component_Developer">
@@ -424,6 +429,7 @@ warning 6002: The table/view 'Dailyreport.dbo.View2' does not have a primary key
             <PropertyRef Name="ControllerName" />
             <PropertyRef Name="ServiceId" />
             <PropertyRef Name="ServiceName" />
+            <PropertyRef Name="DeveloperId" />
           </Key>
           <Property Name="ComponentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ComponentId" Type="Int32" Nullable="false" />
@@ -444,9 +450,12 @@ warning 6002: The table/view 'Dailyreport.dbo.View2' does not have a primary key
           <Property Name="ControllerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ServiceId" Type="Int32" Nullable="false" />
           <Property Name="ServiceName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DeveloperId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_Component_Developer">
-          <End Type="MyDatabaseModel.Developer" Role="Developer" Multiplicity="0..1" />
+          <End Type="MyDatabaseModel.Developer" Role="Developer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="MyDatabaseModel.Component" Role="Component" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Developer">
@@ -628,6 +637,7 @@ warning 6002: The table/view 'Dailyreport.dbo.View2' does not have a primary key
           <EntitySetMapping Name="View2">
             <EntityTypeMapping TypeName="MyDatabaseModel.View2">
               <MappingFragment StoreEntitySet="View2">
+                <ScalarProperty Name="DeveloperId" ColumnName="DeveloperId" />
                 <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
                 <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
                 <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />

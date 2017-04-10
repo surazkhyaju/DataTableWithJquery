@@ -1,5 +1,6 @@
 ﻿using DataTableCRUD.Helper;
 using DataTableCRUD.Models;
+using DataTableCRUD.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 
 namespace DataTableCRUD.Controllers
 {
+   
     public class DailyDeveloperTaskLogController : BaseController
     {
         private readonly MyDatabaseEntities _context;
@@ -16,6 +18,14 @@ namespace DataTableCRUD.Controllers
         {
             _context = new MyDatabaseEntities();
         }
+        public void PopulateDopDown()
+        {
+            ViewBag.Component = _context.Components.ToList();
+            ViewBag.Module = _context.Modules.ToList();
+            ViewBag.Developer = _context.Developers.ToList();
+        }
+
+        
         // GET: DailyDeveloperTaskLog
         public ActionResult Index()
         {
@@ -54,6 +64,7 @@ namespace DataTableCRUD.Controllers
             }
             else
             {
+                ViewBag.Message = ModelState.GetModelStateErrors();
                 result.IsSuccess = false;
                 result.Message = "validation failed";
             }
@@ -92,6 +103,21 @@ namespace DataTableCRUD.Controllers
             _context.DailyDeveloperTaskLogs.Remove(model);
             _context.SaveChanges();
             return Json(new { Issuccess = true });
+        }
+        [HttpGet]
+        public ActionResult Bulk()
+        {
+            ViewBag.Components = _context.Components.ToList();
+            ViewBag.ControllerDetails = _context.ControllerDetails.ToList();
+            ViewBag.DailyDeveloperTaskLog =_context.DailyDeveloperTaskLogs.ToList();
+            ViewBag.Developers = _context.Developers.ToList();
+            ViewBag.Modules = _context.Modules.ToList();
+            ViewBag.Services =_context.Services.ToList();
+            ViewBag.Users = _context.Users.ToList();
+            PopulateDopDown();
+            var model = new List<DailyDeveloperTaskLogViewModel>();
+            model.Add(new DailyDeveloperTaskLogViewModel());
+            return View(model);
         }
 
     }

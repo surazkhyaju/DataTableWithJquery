@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace DataTableCRUD.Controllers
 {
+    
     public class ControllerDetailsController : BaseController
     {
         private readonly MyDatabaseEntities _context;
@@ -16,7 +17,8 @@ namespace DataTableCRUD.Controllers
         {
             _context = new MyDatabaseEntities();
         }
-        // GET: ControllerDetails
+        
+               // GET: ControllerDetails
         public ActionResult Index()
         {
             return View();
@@ -49,6 +51,7 @@ namespace DataTableCRUD.Controllers
             }
             else
             {
+                ViewBag.Message = ModelState.GetModelStateErrors();
                 result.IsSuccess = false;
                 result.Message = "Validation Failed";
             }

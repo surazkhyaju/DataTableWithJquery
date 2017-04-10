@@ -1,50 +1,155 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = null;
 }
 
 
-<p class="lead">Welcome to DataTable using Jquery  </p>
-<h2>please begin</h2>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container">
+        <nav id="menu" class="nav">
+            <div class="row">
+                <div class="container">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+
+                                <img src="~/Content/Img/slides/1.jpg" />
+                                <div class="carousel-caption">
+                                    <h3>
+                                        Introduction
+                                    </h3>
+                                    <p>
+                                        Welcome to Project Management System. In this project you will learn how the project is managed by specified users and their roles in project
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- End Item -->
+                            <div class="item">
+
+
+                                <img src="~/Content/Img/slides/2.jpg" />
+                                <div class="carousel-caption">
+                                    <h3>
+                                        Brief
+                                    </h3>
+                                    <p>
+                                        This project is for everyone who is Developers,System Admin and all who wants to keep trace of their work done
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- End Item -->
+                            <div class="item">
+
+
+                                <img src="~/Content/Img/slides/3.jpg" />
+                                <div class="carousel-caption">
+                                    <h3>
+                                        Dont Worry
+                                    </h3>
+                                    <p>
+                                        Dont worry its easy as sleep. everyone has their own role and duties so perform according to it
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- End Item -->
+                            <!-- End Item -->
+                        </div>
+                        <!-- End Carousel Inner -->
+                        <ul class="nav nav-pills nav-justified">
+                            <li data-target="#myCarousel" data-slide-to="0">
+                                <a href="#">
+                                    About<small>
+                                        : Project Introduction
+                                    </small>
+                                </a>
+                            </li>
+                            <li data-target="#myCarousel" data-slide-to="1">
+                                <a href="#">
+                                    Projects<small>
+                                        :Project
+                                    </small>
+                                </a>
+                            </li>
+                            <li data-target="#myCarousel" data-slide-to="2">
+                                <a href="#">
+                                    Chill  <small>
+                                        : Just Keep Calm and Carry on
+                                    </small>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- End Carousel -->
+                </div>
+            </div>
+
+
+            <div class="page-header">
+                <h1>Don't be Confused!! Its Works Easy</h1>
+            </div>
+            <div class="container">
+                <div class="row pricing">
+                    <div class="col-md-6">
+                        <div class="well">
+                            <h3><b>First you have to login! no biggie</b></h3>
+                            <hr>
+                            <p><b>If you are super admin you have access to everywhere like SuperMan! right!! braw</b></p>
+                            <hr>
+                            <p><b>Create Module and their corresponding Component</b></p>
+                            <hr>
+                            <p><b>Add Developers</b></p>
+                            <hr>
+                            <p><b>Add new User If you are SuperMan!! oh i mean SuperUser</b></p>
+                            <hr>
+                            <p><b>Create Final Report Log to Show to your Boss</b></p>
+                            <hr>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="well">
+                            <h3><b>Looking for this?!!</b></h3>
+                            <hr>
+                            <p><b>As a guest you can only view what their role and task performed by each developer on modules,components</b></p>
+                            <hr>
+                            <p><b>As a developer you can only add modules and component you are working and can't access to other </b></p>
+                            <hr>
+                            <p><b>As System admin you can access to any parts and can modify the contents</b></p>
+                            <hr>
+                            <p><b>You also can update Project start time and project End time</b></p>
+                            <hr>
+                            <p><b>So what are you waiting for. lets go!!</b></p>
+                            <hr>
+
+                        </div>
+                    </div>
+                </div>
+            </div><div class="text-center">
+                <a href="@Url.Action("Main","Home")" title="Login"><span class="icon"> <i aria-hidden="true" class="icon-services"></i></span><span>Start Here onwards</span></a></a>
+
+            </div>
 
 
 
-<div class="row">
-    <div class="col-md-4">
-        <h2></h2>
-
-
+        </nav>
     </div>
 
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/JavaScript.js"></script>
+</body>
 
-</div>
-<div class="container">
-    <nav id="menu" class="nav">
-        <ul>
-
-            <li>
-                <a href="@Url.Action("Index","Component")" title="Component"><span class="icon"> <i aria-hidden="true" class="icon-services"></i></span><span>Component</span></a>
-            </li>
-            <li>
-                <a href="@Url.Action("Index","ControllerDetails")" title="ControllerDetail"><span class="icon"><i aria-hidden="true" class="icon-portfolio"></i></span><span>Controller-Detail</span></a>
-            </li>
-            <li>
-                <a href="@Url.Action("Index","Developer")" title="Developer"><span class="icon"><i aria-hidden="true" class="icon-blog"></i></span><span>Developer</span></a>
-            </li>
-            <li>
-                <a href="@Url.Action("Index","Module")" title="Module"><span class="icon"><i aria-hidden="true" class="icon-blog"></i></span><span>Module</span></a>
-            </li>
-            <li>
-                <a href="@Url.Action("Index","Service")" title="Service"><span class="icon"><i aria-hidden="true" class="icon-team"></i></span><span>Service</span></a>
-            </li>
-            <li>
-                <a href="@Url.Action("Index","User")" title="User"><span class="icon"><i aria-hidden="true" class="icon-contact"></i></span><span>User</span></a>
-            </li>
-            <li>
-                <a href="@Url.Action("Index","DailyDeveloperTaskLog")" title="Task-Log"><span class="icon"><i aria-hidden="true" class="icon-contact"></i></span><span>Task-Log</span></a>
-            </li>
-            <li>
-                <a href="@Url.Action("Index","FinalLog")" title="FinalReportLog"><span class="icon"> <i aria-hidden="true" class="icon-services"></i></span><span>Final-Report</span></a>
-            </li>
-        </ul>
-    </nav>
-</div><!--end container-->
+</html>

@@ -16,28 +16,76 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Home", "Main", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @if (User.Identity.IsAuthenticated)
+                {
+                   
+                    @Html.ActionLink("Logout", "Logout", "Login", new { area = "" }, new { @class = "navbar-brand" })
+                    <li><a href="#">Welcome mr:@User.Identity.Name</a></li>
+                }
+
+                else
+                {
+                    @Html.ActionLink("Login", "Index", "Login", new { area = "" }, new { @class = "navbar-brand" })
+                }
             </div>
+
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+                <ul class="nav navbar-nav"></ul>
             </div>
+
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
+
+        <div class="row">
+            <div class="col-md-2">
+                <ul class="nav nav-pills nav-stacked">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="active"><a href=@Url.Action("Main", "Home")><i class="fa fa-home"></i>Home</a></li>
+                        <li><a href="@Url.Action("Index", "Module")"><i class="fa fa-list-alt"></i>Module</a></li>
+                        <li><a href="@Url.Action("Index", "Component")"><i class="fa fa-file-o"></i>Component</a></li>
+                        <li><a href="@Url.Action("Index", "ControllerDetails")"><i class="fa fa-calendar"></i>Controller</a></li>
+                        <li><a href="@Url.Action("Index", "Developer")"><i class="fa fa-bar-chart-o"></i>Developers</a></li>
+                        <li><a href="@Url.Action("Index", "Service")">Services</a></li>
+                         <li><a href="@Url.Action("Index", "User")" class="fa fa-tasks">Users</a></li>
+                        <li><a href="@Url.Action("Index", "DailyDeveloperTaskLog")"> Daily Developer's task log</a></li>
+                        <li><a href="@Url.Action("Index", "FinalLog")"><i class="fa fa-pencil"></i>Report</a></li>
+                        <li><a href="@Url.Action("Index", "DailyDeveloperTaskLog")"> Daily Developer's task log</a></li>
+                    }
+                    else
+                    {
+
+                        <li><a href="@Url.Action("Index", "FinalLog")"><i class="fa fa-pencil"></i>Report</a></li>
+                    }
+
+
+
+
+
+
+                </ul>
+
+            </div>
+            <div class="col-md-9">
+                @RenderBody()
+            </div>
+        </div>
+
+
+
+
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <!--- <p>&cop</p>-->
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        <script src="~/Scripts/Serialized.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/Serialized.js"></script>
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

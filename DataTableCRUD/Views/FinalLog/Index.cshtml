@@ -1,13 +1,20 @@
 ﻿@using DataTableCRUD.Models
 @model IEnumerable<DataTableCRUD.Models.View2>
 @{
+
     ViewBag.Title = "Index";
+
+
+
 }
 
 <h2>Index</h2>
 <h2>Final Report log</h2>
-<div>
+<div id="divId">
+
+
     <table class="table table-bordered">
+
         <thead>
             <tr>
                 <th>Module-Name</th>
@@ -15,35 +22,25 @@
                 <th>Developer</th>
                 <th>Controller-Name</th>
                 <th>Service-Name</th>
-               
-                <th>Time-Start</th>
-                <th>Time-End</th>
                 <th>Status</th>
                 <th>Remarks</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var fr in Model)
-            {
+         @foreach(var fr in Model)
+         {
+            
                 <tr>
                    <td>@fr.ModuleName</td>
-                  <td>@fr.ComponentName</td>
+                    <td>@fr.ComponentName</td>
                     <td>@fr.DeveloperName</td>
                     <td>@fr.ControllerName</td>
                     <td>@fr.ServiceName</td>
-                    <td>@fr.TimeStart</td>
-                    <td>@fr.TimeEnd</td>
                     <td>@fr.Status</td>
                     <td>@fr.Remark</td>
-
-
-
-
                 </tr>
             }
         </tbody>
     </table>
+  
 </div>
-
-
-

@@ -28,7 +28,9 @@
 
 
                 })
+
             })
+
             $(document).on("click", '[data-action=Edit]', function () {
                 $.get('@Url.Action("editData")' + '?id=' + $(this).attr('data-id'), function (resp) {
                     $('#addDailyBody').html(resp);
@@ -69,6 +71,8 @@
 </div>
 <button type="button" class="btn btn-primary btn-lg" data-action="addNew"> Add Daily </button>
 
+<a href="@Url.Action("Bulk","DailyDeveloperTaskLog")">go to bulk</a>
+
 <div id="addDaily" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -76,6 +80,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Add Daily</h4>
             </div>
+           
             <div class="modal-body" id="addDailyBody">
                 <form method="post"></form>
             </div>

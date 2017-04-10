@@ -12,7 +12,7 @@ namespace DataTableCRUD.Controllers
     {
         private readonly MyDatabaseEntities _context;
 
-
+       
 
 
         public FinalLogController()
@@ -29,9 +29,12 @@ namespace DataTableCRUD.Controllers
             ViewBag.Modules = new SelectList(_context.Modules.ToList());
             ViewBag.Services = new SelectList(_context.Services.ToList());
             ViewBag.Users = new SelectList(_context.Users.ToList());
-
+           
             var data = _context.View2.ToList();
             return View(data);
         }
+
+        
+     
     }
 }

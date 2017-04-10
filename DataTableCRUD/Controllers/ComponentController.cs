@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace DataTableCRUD.Controllers
 {
+    [Authorize]
     public class ComponentController : BaseController
     {
         private readonly MyDatabaseEntities _context;
@@ -16,6 +17,7 @@ namespace DataTableCRUD.Controllers
         {
             _context = new MyDatabaseEntities();
         }
+        [Authorize(Roles = "A")]
         // GET: Component
         public ActionResult Index()
         {
@@ -26,14 +28,14 @@ namespace DataTableCRUD.Controllers
             ViewBag.Modules = new SelectList(_context.Modules.ToList(), "ModuleId", "ModuleName");
             ViewBag.Developers = new SelectList(_context.Developers.ToList(), "DeveloperId", "DeveloperName");
             var model = _context.Components.ToList();
-            return PartialView("_List",model);
+            return PartialView("_List", model);
         }
         [HttpGet]
         public PartialViewResult addData()
         {
             ViewBag.Modules = new SelectList(_context.Modules.ToList(), "ModuleId", "ModuleName");
             ViewBag.Developers = new SelectList(_context.Developers.ToList(), "DeveloperId", "DeveloperName");
-            return PartialView("_addData",new Component());
+            return PartialView("_addData", new Component());
         }
         [HttpPost]
         public ActionResult addData(Component comp)
@@ -50,7 +52,9 @@ namespace DataTableCRUD.Controllers
                 result.Message = "";
 
             }
-            else {
+            else
+            {
+                ViewBag.Message = ModelState.GetModelStateErrors();
                 result.IsSuccess = false;
                 result.Message = "validation failed";
             }
@@ -61,25 +65,21 @@ namespace DataTableCRUD.Controllers
         {
             ViewBag.Developers = new SelectList(_context.Developers.ToList(), "DeveloperId", "DeveloperName");
             ViewBag.Modules = new SelectList(_context.Modules.ToList(), "ModuleId", "ModuleName");
-            var model = _context.Components.FirstOrDefault(x => x.ComponentId== id);
+            var model = _context.Components.FirstOrDefault(x => x.ComponentId == id);
             return PartialView("_editData", model);
         }
         [HttpPost]
         public ActionResult editData(Component comp)
 
         {
-            var result = new JsonResult();
+
             if (ModelState.IsValid)
             {
-
-
                 _context.Entry(comp).State = EntityState.Modified;
                 _context.SaveChanges();
                 return RedirectToAction("Index");
-
             }
-            return Json(result);
-
+            return RedirectToAction("Index");
 
         }
         [HttpPost]
