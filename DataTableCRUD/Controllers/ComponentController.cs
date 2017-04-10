@@ -17,7 +17,7 @@ namespace DataTableCRUD.Controllers
         {
             _context = new MyDatabaseEntities();
         }
-        [Authorize(Roles = "A")]
+        [Authorize(Roles = "Admin")]
         // GET: Component
         public ActionResult Index()
         {
