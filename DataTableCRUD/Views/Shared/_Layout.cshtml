@@ -5,23 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
+
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                
                 @Html.ActionLink("Home", "Main", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 @if (User.Identity.IsAuthenticated)
                 {
-                   
+
+
                     @Html.ActionLink("Logout", "Logout", "Login", new { area = "" }, new { @class = "navbar-brand" })
-                    <li><a href="#">Welcome mr:@User.Identity.Name</a></li>
+
                 }
 
                 else
@@ -30,7 +31,9 @@
                 }
             </div>
 
+
             <div class="navbar-collapse collapse">
+                <a href="#" class="pull-right">Welcome mr:@User.Identity.Name</a>
                 <ul class="nav navbar-nav"></ul>
             </div>
 
@@ -45,39 +48,36 @@
                     {
                         if (User.IsInRole("Admin"))
                         {
-                            <li class="active"><a href=@Url.Action("Main", "Home")><i class="fa fa-home"></i>Home</a></li>
-                            <li><a href="@Url.Action("Index", "Module")"><i class="fa fa-list-alt"></i>Module</a></li>
-                            <li><a href="@Url.Action("Index", "Component")"><i class="fa fa-file-o"></i>Component</a></li>
-                            <li><a href="@Url.Action("Index", "ControllerDetails")"><i class="fa fa-calendar"></i>Controller</a></li>
-                            <li><a href="@Url.Action("Index", "Developer")"><i class="fa fa-bar-chart-o"></i>Developers</a></li>
+                            <li class="active"><a href=@Url.Action("Main", "Home")>Home</a></li>
+                            <li><a href="@Url.Action("Index", "Module")">Module</a></li>
+                            <li><a href="@Url.Action("Index", "Developer")">Developers</a></li>
+                            <li><a href="@Url.Action("Index", "Component")">Component</a></li>
+                            <li><a href="@Url.Action("Index", "ControllerDetails")">Controller</a></li>
+
                             <li><a href="@Url.Action("Index", "Service")">Services</a></li>
-                            <li><a href="@Url.Action("Index", "User")" class="fa fa-tasks">Users</a></li>
+                            <li><a href="@Url.Action("Index", "User")">Users</a></li>
                             <li><a href="@Url.Action("Index", "DailyDeveloperTaskLog")"> Daily Developer's task log</a></li>
-                            <li><a href="@Url.Action("Index", "FinalLog")"><i class="fa fa-pencil"></i>Report</a></li>
-                            <li><a href="@Url.Action("Index", "DailyDeveloperTaskLog")"> Daily Developer's task log</a></li>
+                            <li><a href="@Url.Action("Index", "FinalLog")">Report</a></li>
+
                         }
                         else
                         {
                             <li><a href="@Url.Action("Index", "DailyDeveloperTaskLog")"> Daily Developer's task log</a></li>
-                            <li><a href="@Url.Action("Index", "FinalLog")"><i class="fa fa-pencil"></i>Report</a></li>
+                            <li><a href="@Url.Action("Index", "FinalLog")">Report</a></li>
 
                         }
                     }
                     else
                     {
 
-                        <li><a href="@Url.Action("Index", "FinalLog")"><i class="fa fa-pencil"></i>Report</a></li>
+                        <li><a href="@Url.Action("Index", "FinalLog")">Report</a></li>
                     }
-
-
-
-
 
 
                 </ul>
 
             </div>
-            <div class="col-md-9">
+            <div class="col-md-10">
                 @RenderBody()
             </div>
         </div>
@@ -93,7 +93,14 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
     <script src="~/Scripts/Serialized.js"></script>
+
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+    <script src="~/Scripts/wickedpicker.js"></script>
+    <script src="~/Scripts/wickedpicker.min.js"></script>
+
     @RenderSection("scripts", required: false)
 </body>
 

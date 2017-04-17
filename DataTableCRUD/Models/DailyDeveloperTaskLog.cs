@@ -18,9 +18,9 @@ namespace DataTableCRUD.Models
         public string Task { get; set; }
         public int ControllerId { get; set; }
         public int ServiceId { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<int> TimeStart { get; set; }
-        public Nullable<int> TimeEnd { get; set; }
+        public string Date { get; set; }
+        public string TimeStart { get; set; }
+        public string TimeEnd { get; set; }
         public string JSFileName { get; set; }
         public string ViewName { get; set; }
         public string Remark { get; set; }

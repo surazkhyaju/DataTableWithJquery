@@ -37,9 +37,9 @@
           <Property Name="Task" Type="varchar" MaxLength="2500" Nullable="false" />
           <Property Name="ControllerId" Type="int" Nullable="false" />
           <Property Name="ServiceId" Type="int" Nullable="false" />
-          <Property Name="Date" Type="date" />
-          <Property Name="TimeStart" Type="int" />
-          <Property Name="TimeEnd" Type="int" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="TimeStart" Type="nvarchar" MaxLength="50" />
+          <Property Name="TimeEnd" Type="nvarchar" MaxLength="50" />
           <Property Name="JSFileName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ViewName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Remark" Type="varchar" MaxLength="2000" />
@@ -122,9 +122,9 @@ warning 6002: The table/view 'Dailyreport.dbo.View2' does not have a primary key
           <Property Name="Status" Type="varchar" MaxLength="50" />
           <Property Name="DailyDeveloperTaskLogId" Type="int" Nullable="false" />
           <Property Name="Task" Type="varchar" MaxLength="2500" Nullable="false" />
-          <Property Name="Date" Type="date" />
-          <Property Name="TimeStart" Type="int" />
-          <Property Name="TimeEnd" Type="int" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="TimeStart" Type="nvarchar" MaxLength="50" />
+          <Property Name="TimeEnd" Type="nvarchar" MaxLength="50" />
           <Property Name="ViewName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Remark" Type="varchar" MaxLength="2000" />
           <Property Name="DeveloperName" Type="varchar" MaxLength="50" Nullable="false" />
@@ -346,9 +346,9 @@ warning 6002: The table/view 'Dailyreport.dbo.View2' does not have a primary key
           <Property Name="Task" Type="String" Nullable="false" MaxLength="2500" FixedLength="false" Unicode="false" />
           <Property Name="ControllerId" Type="Int32" Nullable="false" />
           <Property Name="ServiceId" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="TimeStart" Type="Int32" />
-          <Property Name="TimeEnd" Type="Int32" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TimeStart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TimeEnd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="JSFileName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ViewName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Remark" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
@@ -436,9 +436,9 @@ warning 6002: The table/view 'Dailyreport.dbo.View2' does not have a primary key
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DailyDeveloperTaskLogId" Type="Int32" Nullable="false" />
           <Property Name="Task" Type="String" Nullable="false" MaxLength="2500" FixedLength="false" Unicode="false" />
-          <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="TimeStart" Type="Int32" />
-          <Property Name="TimeEnd" Type="Int32" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TimeStart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TimeEnd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ViewName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Remark" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="DeveloperName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />

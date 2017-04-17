@@ -30,7 +30,7 @@ namespace DataTableCRUD.Controllers
         
         public ActionResult Index()
         {
-            return View();
+           return View();
         }
         public PartialViewResult getData()
         {
@@ -41,7 +41,6 @@ namespace DataTableCRUD.Controllers
         public PartialViewResult addData()
         {
             return PartialView("_addData", new Module());
-
         }
         [HttpPost]
         public ActionResult addData(Module module)
@@ -74,13 +73,9 @@ namespace DataTableCRUD.Controllers
         [HttpPost]
         public ActionResult editData(Module module)
         {
-
-
             if (ModelState.IsValid)
             {
-
-
-                _context.Entry(module).State = EntityState.Modified;
+               _context.Entry(module).State = EntityState.Modified;
                 _context.SaveChanges();
                 return RedirectToAction("Index");
 

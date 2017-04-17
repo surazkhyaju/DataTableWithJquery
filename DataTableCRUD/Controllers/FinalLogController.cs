@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace DataTableCRUD.Controllers
 {
     public class FinalLogController : BaseController
@@ -30,8 +31,8 @@ namespace DataTableCRUD.Controllers
             ViewBag.Services = new SelectList(_context.Services.ToList());
             ViewBag.Users = new SelectList(_context.Users.ToList());
            
-            var data = _context.View2.ToList();
-            return View(data);
+          var data = _context.View2.ToList();
+           return View(data);
         }
 
         

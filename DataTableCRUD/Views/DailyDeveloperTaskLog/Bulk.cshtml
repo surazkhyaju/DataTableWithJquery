@@ -2,45 +2,141 @@
 @{
     ViewBag.Title = "Bulk";
 }
-    
+
 
 @using DataTableCRUD.Helper;
 <h2>Bulk</h2>
+<script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/Gruntfile.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+@section Scripts{
 
-<li><a href="#">Welcome</a></li>
-<table class="table table-bordered">
+    <script type="text/javascript">
 
-    <thead>
-        <tr>
-            <th>Module-Name</th>
-            <th>Component-Name</th>
-            <th>Controller-Name</th>
-           <th>Service-Name</th>
-            <th>Status</th>
-            <th>JS file Name</th>
-            <th>View-Name</th>
-            <th>Remarks</th>
-            <th>update</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var fr in Model)
-        {
+        $(function () {
+            var table = $('#table-data')[0];
+            $(table).delegate('.tr_clone_add', 'click', function () {
 
+                var thisRow = $(this).closest('tr')[0];
+
+
+                $(thisRow).clone().insertAfter(thisRow).find('input:text').val('');
+                maintainIDs();
+                $(".datepicker").datetimepicker();
+                $(".timepicker").datetimepicker({
+                    format: 'LT'
+                });
+
+
+            });
+            function maintainIDs() {
+                $('#table-data > tbody > tr').each(function () {
+                    var index = $(this).index();
+                    $(this).find('input[name], select[name]').each(function () {
+                        $(this).attr('name', $(this).attr('name').replace(/\d+/, index));
+                    });
+                });
+            }
+            $("#table-data").on("click", "button", function () {
+                $(this).closest("tr").remove();
+                maintainIDs();
+
+            });
+            $(".datepicker").datetimepicker();
+            $(".timepicker").datetimepicker({
+                format: 'LT',
+
+            });
+
+            $("#submitForm").on("click", function (e)
+            {
+                //$("#bulkForm").validate();
+                e.preventDefault();
+                var $form = $("#bulkForm");
+                $.ajax({
+                    url: '/DailyDeveloperTaskLog/Bulk',
+                    data: $form.serializeObject(),
+                    method: 'Post',
+                    success: function (result) {
+                        alert("result is added successfully");
+                    },
+                    error: function (error) {
+                        alert("please fulfill all the form ");
+                    }
+                })
+            });
+
+        });
+
+    </script>
+
+
+
+
+}
+
+@using (Html.BeginForm("Bulk", "DailyDeveloperTaskLog", FormMethod.Post, new { id = "bulkForm" }))
+
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <li><a href="#">Welcome</a></li>
+
+
+    <table class="table table-hover table-bordered" id="table-data">
+
+        <thead>
             <tr>
-                <td>@Html.DropDownListFor(x => fr.ModuleId, new SelectList(ViewBag.Modules, "ModuleId", "ModuleName", fr.ModuleId), new { @class = "form-control" })</td>
-                <td>@Html.DropDownListFor(x => fr.ComponentId, new SelectList(ViewBag.Components, "ComponentId", "ComponentName", fr.ComponentId), new { @class = "form-control" })</td>
-                <td>@Html.DropDownListFor(x => fr.ControllerId, new SelectList(ViewBag.ControllerDetails, "ControllerId", "ControllerName", fr.ControllerId), new { @class = "form-control" })</td>
-               <td>@Html.DropDownListFor(x=>fr.ServiceId,new SelectList(ViewBag.Services,"ServiceId","ServiceName",fr.ServiceId),new { @class="form-control"})</td>
-                <td>@Html.DropDownListFor(x => fr.Status,DropdownHelper.ServiceTypeSelectList, new { @class = "form-control" })</td>
-                <td>@Html.TextBoxFor(x => fr.JSFileName, new { @class = "form-control" })</td>
-                <td>@Html.TextBoxFor(x => fr.View, new { @class = "form-control" })</td>
-                <td>@Html.TextBoxFor(x => fr.Remarks, new { @class = "form-control" })</td>
-                <td><a data-action="Update" data-id="@fr.ComponentId">update</a></td>
-                <td><a data-action="Delete" data-id="@fr.ComponentId">Delete</a></td>
 
+                <th>Date</th>
+                <th>Module-Name</th>
+                <th>Component-Name</th>
+                <th>Controller-Name</th>
+                <th>Service-Name</th>
+                <th>Status</th>
+                <th>JS file Name</th>
+                <th>View-Name</th>
+                <th>Time-Start</th>
+                <th>Time-End</th>
+                <th>Task</th>
+                <th>update</th>
+                <th>Delete</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.Count; i++)
+            {
+                var fr = Model[i];
+                <tr>
+                    <td>@Html.TextBoxFor(x => Model[i].Date, new { @class = "form-control datepicker" })  </td>
+                    <td>@Html.DropDownListFor(x => Model[i].ModuleId, new SelectList(ViewBag.Modules, "ModuleId", "ModuleName", fr.ModuleId), new { @class = "form-control  " })</td>
+                    <td>@Html.DropDownListFor(x => Model[i].ComponentId, new SelectList(ViewBag.Components, "ComponentId", "ComponentName", fr.ComponentId), new { @class = "form-control " })</td>
+                    <td>@Html.DropDownListFor(x => Model[i].ControllerId, new SelectList(ViewBag.ControllerDetails, "ControllerId", "ControllerName", fr.ControllerId), new { @class = "form-control " })</td>
+                    <td>@Html.DropDownListFor(x => Model[i].ServiceId, new SelectList(ViewBag.Services, "ServiceId", "ServiceName", fr.ServiceId), new { @class = "form-control " })</td>
+                    <td>@Html.DropDownListFor(x => Model[i].Status, DropdownHelper.ServiceTypeSelectList, new { @class = "form-control " })</td>
+                    <td>@Html.TextBoxFor(x => Model[i].JSFileName, new { @class = "form-control " })</td>
+                    <td>@Html.TextBoxFor(x => Model[i].View, new { @class = "form-control " })</td>
+                    <td>@Html.TextBoxFor(x => Model[i].StartTime, new { @class = "form-control timepicker" })</td>
+                    <td>@Html.TextBoxFor(x => Model[i].EndTime, new { @class = "form-control  timepicker" })</td>
+                    <td>@Html.TextBoxFor(x => Model[i].Remarks, new { @class = "form-control " })</td>
+
+                    <td><a data-action="Update" class="tr_clone_add">update</a></td>
+                    <td><button type="button">Delete</button></td>
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    <input type="submit" name="submitData" class="bottom btn btn-primary" value="Submit" id="submitForm" />
+    <span id="submitdata"></span>
+
+
+
+}
+
+

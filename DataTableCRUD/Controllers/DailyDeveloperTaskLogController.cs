@@ -10,9 +10,11 @@ using System.Web.Mvc;
 
 namespace DataTableCRUD.Controllers
 {
-   
+
     public class DailyDeveloperTaskLogController : BaseController
     {
+
+
         private readonly MyDatabaseEntities _context;
         public DailyDeveloperTaskLogController()
         {
@@ -25,11 +27,11 @@ namespace DataTableCRUD.Controllers
             ViewBag.Developer = _context.Developers.ToList();
         }
 
-        
+
         // GET: DailyDeveloperTaskLog
         public ActionResult Index()
         {
-           
+
             return View();
         }
         public PartialViewResult getData()
@@ -107,19 +109,47 @@ namespace DataTableCRUD.Controllers
         [HttpGet]
         public ActionResult Bulk()
         {
+
             ViewBag.Components = _context.Components.ToList();
             ViewBag.ControllerDetails = _context.ControllerDetails.ToList();
-            ViewBag.DailyDeveloperTaskLog =_context.DailyDeveloperTaskLogs.ToList();
+            ViewBag.DailyDeveloperTaskLog = _context.DailyDeveloperTaskLogs.ToList();
             ViewBag.Developers = _context.Developers.ToList();
             ViewBag.Modules = _context.Modules.ToList();
-            ViewBag.Services =_context.Services.ToList();
+            ViewBag.Services = _context.Services.ToList();
             ViewBag.Users = _context.Users.ToList();
             PopulateDopDown();
             var model = new List<DailyDeveloperTaskLogViewModel>();
             model.Add(new DailyDeveloperTaskLogViewModel());
             return View(model);
         }
+        [HttpPost]
 
+        public ActionResult Bulk(List<DailyDeveloperTaskLogViewModel> d)
+        {
+
+            var res = new JsonResult();
+            if (ModelState.IsValid)
+            {
+                var a = d.Select(o => new DailyDeveloperTaskLog()
+                {
+                    CreatedByUSerDate = DateTime.Now,
+                    CreatedByUserName = User.Identity.Name,
+                    CreatedByUserId = 1,
+                    ControllerId = o.ControllerId,
+                    JSFileName = o.JSFileName,
+                    DailyDeveloperTaskLogId = o.ControllerId,
+                    ServiceId = o.ServiceId,
+                    Date=o.Date,
+                    TimeStart=o.StartTime,
+                    TimeEnd=o.EndTime,
+                  
+                    ViewName = o.View,
+                    Task = o.Remarks,
+                });
+                _context.DailyDeveloperTaskLogs.AddRange(a);
+                _context.SaveChanges();
+            }
+            return Json(res);
+        }
     }
 }
-    

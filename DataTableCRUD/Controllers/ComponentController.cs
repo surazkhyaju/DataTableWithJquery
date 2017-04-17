@@ -44,13 +44,11 @@ namespace DataTableCRUD.Controllers
             var result = new JsonResult();
             if (ModelState.IsValid)
             {
-                comp.CreatedByUserId = 1;
-                comp.CreatedByUserName = "Suraz";
-                comp.CreatedByUSerDate = DateTime.Now;
-                _context.Components.Add(comp);
-                _context.SaveChanges();
-                result.IsSuccess = true;
-                result.Message = "";
+                {
+                    _context.Entry(comp).State = EntityState.Added;
+                    _context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
             }
             else
@@ -71,9 +69,7 @@ namespace DataTableCRUD.Controllers
         }
         [HttpPost]
         public ActionResult editData(Component comp)
-
         {
-
             if (ModelState.IsValid)
             {
                 _context.Entry(comp).State = EntityState.Modified;
@@ -81,7 +77,6 @@ namespace DataTableCRUD.Controllers
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
-
         }
         [HttpPost]
         public ActionResult Delete(int id)

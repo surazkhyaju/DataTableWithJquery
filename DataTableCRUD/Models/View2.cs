@@ -19,9 +19,9 @@ namespace DataTableCRUD.Models
         public string Status { get; set; }
         public int DailyDeveloperTaskLogId { get; set; }
         public string Task { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<int> TimeStart { get; set; }
-        public Nullable<int> TimeEnd { get; set; }
+        public string Date { get; set; }
+        public string TimeStart { get; set; }
+        public string TimeEnd { get; set; }
         public string ViewName { get; set; }
         public string Remark { get; set; }
         public string DeveloperName { get; set; }

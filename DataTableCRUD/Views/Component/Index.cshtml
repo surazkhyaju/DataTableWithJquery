@@ -21,7 +21,7 @@
                 })
             });
             $(document).on("click", "#saveComponent", function () {
-                $.post("@Url.Action("addData")", { comp: $('#postDataForm').serializeObject() }, function (resp) {
+               $.post("@Url.Action("addData")", { comp: $('#postDataForm').serializeObject() }, function (resp) {
 
                     $('#addComponent').modal('hide');
                     loadData();
@@ -30,13 +30,22 @@
                 })
             })
             $(document).on("click", '[data-action=Edit]', function () {
-                $.get('@Url.Action("editData")' + '?id=' + $(this).attr('data-id'), function (resp) {
+               $.get('@Url.Action("editData")' + '?id=' + $(this).attr('data-id'), function (resp) {
                     $('#addComponentBody').html(resp);
                     $('#addComponent').modal('show');
 
                 });
             });
             $(document).on("click", "#updateComponent", function () {
+               $.post("@Url.Action("editData")", { comp: $('#postDataForm').serializeObject() }, function (resp) {
+
+                    $('#addComponent').modal('hide');
+                    loadData();
+
+
+                })
+            });
+            $(document).on("click", "#cancelComponent", function () {
                 $.post("@Url.Action("editData")", { comp: $('#postDataForm').serializeObject() }, function (resp) {
 
                     $('#addComponent').modal('hide');
@@ -45,6 +54,7 @@
 
                 })
             });
+
             $(document).on("click", '[data-action=Delete]', function () {
 
                 if (confirm("Are you sure you want to delete this")) {
