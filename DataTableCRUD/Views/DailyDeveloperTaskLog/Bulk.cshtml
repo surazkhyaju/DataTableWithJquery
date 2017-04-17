@@ -6,13 +6,16 @@
 
 @using DataTableCRUD.Helper;
 <h2>Bulk</h2>
-<script src="~/Scripts/jquery.validate.js"></script>
-    <script src="~/Scripts/Gruntfile.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Scripts/jquery.validate.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+
 @section Scripts{
+    @*<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script src="~/Scripts/Gruntfile.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>*@
+
 
     <script type="text/javascript">
 
@@ -29,7 +32,7 @@
                 $(".timepicker").datetimepicker({
                     format: 'LT'
                 });
-
+                ApplyValidation();
 
             });
             function maintainIDs() {
@@ -40,9 +43,10 @@
                     });
                 });
             }
-            $("#table-data").on("click", "button", function () {
+            $("#table-data").on("click", ".tr_remove", function () {
                 $(this).closest("tr").remove();
                 maintainIDs();
+                ApplyValidation();
 
             });
             $(".datepicker").datetimepicker();
@@ -51,11 +55,83 @@
 
             });
 
-            $("#submitForm").on("click", function (e)
-            {
+            ApplyValidation();
+
+            function ApplyValidation() {
+                var validator = $("#bulkForm").validate({
+                    ignore: "",
+                    //errorPlacement: function (error, element) {
+                    //    //if (errors) {
+                    //    //    // add items to error list and map
+                    //    //    $.extend(this.errorMap, errors);
+                    //    //    this.errorList = [];
+                    //    //    for (var name in errors) {
+                    //    //        this.errorList.push({
+                    //    //            message: errors[name],
+                    //    //            element: this.findByName(name)[0]
+                    //    //        });
+                    //    //    }
+                    //    //    // remove items from success list
+                    //    //    this.successList = $.grep(this.successList, function (element) {
+                    //    //        return !(element.name in errors);
+                    //    //    });
+                    //    //}
+
+                    //    //$(this.errorList).each(function (index, item) {
+                    //    $('ul#errors').append('<li>' + element.attr('name') + ' : ' + error.html() + '</li>')
+                    //    //})
+
+
+                    //},
+                    //success: function (error) {
+                    //    $('ul#errors').html('');
+                    //}
+
+
+                });
+                $('[name$=JSFileName]').each(function (index, item) {
+                    $(item).rules("add", {
+                        required: true,
+                       
+                        messages: {
+                            required: 'Required',
+                            
+                        }
+                    });
+                });
+                $('[name$=View]').each(function (index, item) {
+                    $(item).rules("add", {
+                        required: true,
+
+                        messages: {
+                            required: 'Required',
+
+                        }
+                    });
+                });
+                $('[name$=Remarks]').each(function (index, item) {
+                    $(item).rules("add", {
+                        required: true,
+
+                        messages: {
+                            required: 'Required',
+
+                        }
+                    });
+                });
+                //JSFileName
+
+            }
+
+            $("#submitForm").on("click", function (e) {
                 //$("#bulkForm").validate();
                 e.preventDefault();
+
                 var $form = $("#bulkForm");
+                if (!$form.valid()) {
+                    return false;
+                    alert('Invalid');
+                }
                 $.ajax({
                     url: '/DailyDeveloperTaskLog/Bulk',
                     data: $form.serializeObject(),
@@ -68,7 +144,6 @@
                     }
                 })
             });
-
         });
 
     </script>
@@ -86,12 +161,12 @@
 
     <li><a href="#">Welcome</a></li>
 
+    <ul id="errors"></ul>
 
     <table class="table table-hover table-bordered" id="table-data">
 
         <thead>
             <tr>
-
                 <th>Date</th>
                 <th>Module-Name</th>
                 <th>Component-Name</th>
@@ -103,8 +178,8 @@
                 <th>Time-Start</th>
                 <th>Time-End</th>
                 <th>Task</th>
-                <th>update</th>
-                <th>Delete</th>
+                <th></th>
+                
             </tr>
         </thead>
         <tbody>
@@ -118,19 +193,20 @@
                     <td>@Html.DropDownListFor(x => Model[i].ControllerId, new SelectList(ViewBag.ControllerDetails, "ControllerId", "ControllerName", fr.ControllerId), new { @class = "form-control " })</td>
                     <td>@Html.DropDownListFor(x => Model[i].ServiceId, new SelectList(ViewBag.Services, "ServiceId", "ServiceName", fr.ServiceId), new { @class = "form-control " })</td>
                     <td>@Html.DropDownListFor(x => Model[i].Status, DropdownHelper.ServiceTypeSelectList, new { @class = "form-control " })</td>
-                    <td>@Html.TextBoxFor(x => Model[i].JSFileName, new { @class = "form-control " })</td>
+                    <td>@Html.TextBoxFor(x => Model[i].JSFileName, new { @class = "form-control" })</td>
                     <td>@Html.TextBoxFor(x => Model[i].View, new { @class = "form-control " })</td>
                     <td>@Html.TextBoxFor(x => Model[i].StartTime, new { @class = "form-control timepicker" })</td>
                     <td>@Html.TextBoxFor(x => Model[i].EndTime, new { @class = "form-control  timepicker" })</td>
                     <td>@Html.TextBoxFor(x => Model[i].Remarks, new { @class = "form-control " })</td>
 
-                    <td><a data-action="Update" class="tr_clone_add">update</a></td>
-                    <td><button type="button">Delete</button></td>
-
+                    
+                    <td>
+                        <i class="fa fa-plus tr_clone_add" title="Add" />
+                        <i class="fa fa-trash tr_remove" title="Remove" />
+                    </td>
                 </tr>
             }
         </tbody>
-
     </table>
     <input type="submit" name="submitData" class="bottom btn btn-primary" value="Submit" id="submitForm" />
     <span id="submitdata"></span>
