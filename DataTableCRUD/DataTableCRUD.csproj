@@ -467,6 +467,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Serialized.js" />
+    <Content Include="Scripts\tableHeadFixer.js" />
     <Content Include="Scripts\wickedpicker.js" />
     <Content Include="Scripts\wickedpicker.min.js" />
     <Content Include="Scripts\wickedpickerSpec.js" />

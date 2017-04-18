@@ -1,6 +1,12 @@
 ﻿
 @section Scripts{
+
+
     <script type="text/javascript">
+        $(document).ready(function () {
+            $("#tableId").tableHeadFixer();
+            $("#tableId").tableHeadFixer({ 'foot': true });
+        });
         $(function () {
 
             loadData();
@@ -15,7 +21,9 @@
                     $('#addDaily').modal('show')
                 })
 
-            }); 
+            });
+            //$("#tableId").tableHeadFixer();
+            //$("#tableId").tableHeadFixer({ 'foot': true });
             $(document).on("click", "#saveDaily", function () {
                 $.post("@Url.Action("addData")", { daily: $('#postDataForm').serializeObject() }, function (resp) {
                     if (resp.IsSuccess == true) {
@@ -62,6 +70,9 @@
                     });
                 }
             });
+          
+
+           
         });
     </script>
 }
