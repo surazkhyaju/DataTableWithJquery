@@ -60,42 +60,14 @@
             function ApplyValidation() {
                 var validator = $("#bulkForm").validate({
                     ignore: "",
-                    //errorPlacement: function (error, element) {
-                    //    //if (errors) {
-                    //    //    // add items to error list and map
-                    //    //    $.extend(this.errorMap, errors);
-                    //    //    this.errorList = [];
-                    //    //    for (var name in errors) {
-                    //    //        this.errorList.push({
-                    //    //            message: errors[name],
-                    //    //            element: this.findByName(name)[0]
-                    //    //        });
-                    //    //    }
-                    //    //    // remove items from success list
-                    //    //    this.successList = $.grep(this.successList, function (element) {
-                    //    //        return !(element.name in errors);
-                    //    //    });
-                    //    //}
-
-                    //    //$(this.errorList).each(function (index, item) {
-                    //    $('ul#errors').append('<li>' + element.attr('name') + ' : ' + error.html() + '</li>')
-                    //    //})
-
-
-                    //},
-                    //success: function (error) {
-                    //    $('ul#errors').html('');
-                    //}
-
-
                 });
                 $('[name$=JSFileName]').each(function (index, item) {
                     $(item).rules("add", {
                         required: true,
-                       
+
                         messages: {
                             required: 'Required',
-                            
+
                         }
                     });
                 });
@@ -105,7 +77,6 @@
 
                         messages: {
                             required: 'Required',
-
                         }
                     });
                 });
@@ -115,10 +86,80 @@
 
                         messages: {
                             required: 'Required',
+                        }
+                    });
+                });
+                $('[name$=ModuleId]').each(function (index, item) {
+                    $(item).rules("add", {
+                        required: true,
+
+                        messages: {
+                            required: 'Required',
 
                         }
                     });
                 });
+                $('[name$=ComponentId]').each(function (index, item) {
+                    $(item).rules("add", {
+                        required: true,
+
+                        messages: {
+                            required: 'Required',
+
+                        }
+                    });
+                });
+                $('[name$=ControllerId]').each(function (index, item) {
+                    $(item).rules("add", {
+                        required: true,
+
+                        messages: {
+                            required: 'Required',
+
+                        }
+                    });
+                });
+                $('[name$=StartTime]').each(function (index, item) {
+                    $(item).rules("add", {
+                        required: true,
+
+                        messages: {
+                            required: 'Required',
+
+                        }
+                    });
+                });
+                $('[name$=EndTime]').each(function (index, item) {
+                    $(item).rules("add", {
+                        required: true,
+
+                        messages: {
+                            required: 'Required',
+
+                        }
+                    });
+                });
+                $('[name$=Date]').each(function (index, item) {
+                    $(item).rules("add", {
+                        required: true,
+
+                        messages: {
+                            required: 'Required',
+
+                        }
+                    });
+                });
+                $('[name$=Status]').each(function (index, item) {
+                    $(item).rules("add", {
+                        required: true,
+
+                        messages: {
+                            required: 'Required',
+
+                        }
+                    });
+                });
+
                 //JSFileName
 
             }
@@ -179,7 +220,7 @@
                 <th>Time-End</th>
                 <th>Task</th>
                 <th></th>
-                
+
             </tr>
         </thead>
         <tbody>
@@ -199,7 +240,7 @@
                     <td>@Html.TextBoxFor(x => Model[i].EndTime, new { @class = "form-control  timepicker" })</td>
                     <td>@Html.TextBoxFor(x => Model[i].Remarks, new { @class = "form-control " })</td>
 
-                    
+
                     <td>
                         <i class="fa fa-plus tr_clone_add" title="Add" />
                         <i class="fa fa-trash tr_remove" title="Remove" />
